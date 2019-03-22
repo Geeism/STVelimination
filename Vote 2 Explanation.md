@@ -8,8 +8,9 @@ The STV system we're using is like doing a single vote poll, but over and over. 
 It should be noted that this is different to the "normal" STV (such as what's used in Australia), where if a candidate reaches a threshold then they become elected.
 
 # Checking to see if we messed with the coding
-
-### Step 1: preparing the data
+### Testing
+#### test
+## Step 1: preparing the data
 Everything's stored on the `Fan Team Contest Responses` Sheet in the `FTC 2019` folder. If you examine the layout of the `Vote 2` sheet, you'll see that there are two columns containing the data that are unrelated to counting, so to neaten things up I made the `Vote 2 export` sheet.
 
 So basically:
