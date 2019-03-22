@@ -1,8 +1,8 @@
 Whattup. The purpose of making the code public is to allow anyone to see if I fiddled with the data to mess with the outcome.
 
-The counting component of the code is fairly simple. Each vote is a list with candidates listed in order of preference. The code reads down the list, and if the candidate it's looking at is still in the `options` dictionary, then it'll +1 to that candidate and start reading the next vote. Since candidates are removed from `options` if they're the lowest, the code just skips over preferences that have been eliminated. Nice and simple.
+The counting component of the code is fairly simple. Each vote is a list with candidates listed in order of preference. The code reads down the list, and if the candidate it's looking at is still in the `options` dictionary, then it'll +1 to that candidate and start reading the next vote. Since candidate elimination is simply removal from `options`, the code just skips over preferences that have been eliminated. Nice and simple.
 
-The problem that I needed to solve was that I wanted to have candidates as rows in the Form multiple choice box question, which resulted in a .csv that wasn't in the 'candidates listed in order of preference' format. The bulk of my code is for converting one format into the other.
+The problem that I needed to solve was that the original code had candidates in the columns (answers) of the multiple choice grid and preferences in the rows (answers). That looks weird, so I wanted to have the candidates as the questions. This changes the layout of the resulting spreadsheet, so the bulk of my code converts the candidate-question data into a candidate-answer format that the counting code can use.
 
 #How to check my counting
 
