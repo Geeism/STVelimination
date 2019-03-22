@@ -1,26 +1,20 @@
-# How STV with elimination works
-In STV, each vote is a single *transferable* vote. A single vote is a list of preferences, and that vote goes to the highest preference that still has a "surviving" candidate. Let's see how that works out with some fruit. 
+Whattup. The purpose of making the code public is to allow anyone to see if I fiddled with the data to mess with the outcome.
 
-Let's say we have 4 candidates, Apples, Oranges, Pears and Bananas. You are one of 100 voters, and your vote has bananas first, apples second, pears third, and oranges fourth. Now, let's count all 100 votes. As it turns out, Bananas came last with just 5 votes. Bananas are eliminated, and anyone who preferenced bananas at the top will have their vote moved to a different candidate using the next preference down the list (which is apples for you). The system has *transferred* your vote to your next available preference. This process, of elimination and next-preference distribution, occurs as many times as required until there's a winner. So let's continue with our example: we count up all the votes again and it comes out at 45 for oranges, 45 for pears, and 10 for apples. Apples are last so they get eliminated, and those 10 votes now get distributed out. When the next and final count happens, apples and pears are still drawing from the same 100 votes (assuming everyone filled our their vote from 1-4). And, their numbers will be filled with people who preferenced them first, second, or even third.
+The counting component of the code is fairly simple. Each vote is a list with candidates listed in order of preference. The code reads down the list, and if the candidate it's looking at is still in the `options` dictionary, then it'll +1 to that candidate and start reading the next 
 
-The STV system we're using is like doing a single vote poll, but over and over. Each time the last place is removed, giving the people who voted for that eliminated candidate to vote for their next preference. Of course, doing the vote over and over would be annoying so STV takes care of it in a single hit.
+The original code was really neat, because all that was required was a multiple choice box question with the candidates in the columns (as the answers) and the preferences in rows (as the questions). But I didn't like this, because the team names would fit better into the rows. 
 
-It should be noted that this is different to the "normal" STV (such as what's used in Australia), where if a candidate reaches a threshold then they become elected.
+At the time, I also thought that shuffling the questions would only work if the questions were the candidates. The reason for shuffling is so that an auto-clicker script can't be used. But I now realise that the shuffling could still achieve that end if the questions were the preferences rather the candidates. But I still think it's better to have the candidates in the rows, as they can have long names. If you have too many columns, you need a horizontal scroll to fit all of that stuff in so that'd be a bit annoying.
 
-# Checking to see if we messed with the coding
-### Testing
-#### test
-## Step 1: preparing the data
-Everything's stored on the `Fan Team Contest Responses` Sheet in the `FTC 2019` folder. If you examine the layout of the `Vote 2` sheet, you'll see that there are two columns containing the data that are unrelated to counting, so to neaten things up I made the `Vote 2 export` sheet.
+The problem that I needed to solve was to convert the .csv from the candidate-question format to the candidate-answer format, as the candidate-answer format has the list of candidates in order which is what the counter requires. 
 
-So basically:
-- Download the `Vote 2 export` sheet as a .csv
-- Download `candidates` sheet as a .csv
+#How to check my counting
 
-### Step 2: running the code
-The only thing that you should need to make sure of is that the two downloaded .csvs need to be in the same place as the code. Once you press run, it'll load in the data and do it's counting thing.
+There are basically three ways that someone could mess with the results.
+1. Mess with the raw data
+2. Mess with the conversion process
+3. Mess with the counting process
+4. Mess with the counting output
 
-### Step 3: checking for discrepancies
-Assuming everything went correctly, the code should generate a `FTC19_outcome.csv`.
+To check the first one, you'll have go to and look at the history in the `Fan Team Contest Responses` Sheet. The other three you can do yourself with the code.
 
-To really make sure that things haven't been tampered with, you want to go through my code and make sure there's no part 
